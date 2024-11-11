@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Potato Disease Classification System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: url('potatoll.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(146, 132, 132, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        h2 {
+            color: #2e8b57;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        li {
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 100%;
+}
+
+li {
+    float: left;
+    font-weight: bold;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #000000;
+}
+
+.active {
+    background-color: none;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="disease_info.html">Disease Awareness</a></li>
+            <li><a href="use.html">How to Use</a></li>
+            <li><a href="model.html">About System</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>How to Use the Potato Disease Classification System</h1>
+        <br>
+        <div class="section">
+            <h2>Step-by-Step Instructions</h2>
+            <p>Follow these simple steps to classify potato leaf images using our system:</p>
+            <ol>
+                <li>
+                    <strong>Upload or Click Picture:</strong>
+                    <p>Click on the "Upload or Click Picture" button to select an image from your device. Alternatively, you can use your device's camera to take a new picture.</p>
+                </li>
+                <li>
+                    <strong>Preview Image:</strong>
+                    <p>After selecting or capturing an image, you will see a preview of the uploaded image (if implemented in your system). Make sure the image is clear and represents the leaf condition you want to classify.</p>
+                </li>
+                <li>
+                    <strong>Predict:</strong>
+                    <p>Click on the "Predict" button to analyze the uploaded image. The system will process the image and classify it based on the potato leaf diseases.</p>
+                </li>
+                <li>
+                    <strong>View Results:</strong>
+                    <p>Once the prediction is complete, the results will be displayed. You will see the predicted class of the leaf (e.g., Early Blight, Late Blight, or Healthy) and the confidence level as a percentage indicating how closely the image matches the predicted class.</p>
+                </li>
+            </ol>
+        </div>
+        <br><br>
+        
+        <div class="section">
+            <h2>Understanding the Results</h2>
+            <p>The results will provide you with two key pieces of information:</p>
+            <ul>
+                <li><strong>Predicted Class:</strong> This indicates the type of condition detected in the leaf image. The possible classes are Early Blight, Late Blight, or Healthy.</li>
+                <br>
+                <li><strong>Confidence:</strong> This shows the percentage of confidence in the prediction. A higher percentage indicates a stronger match between the image and the predicted class.</li>
+            </ul>
+            <p>Use these results to make informed decisions about managing your potato crops. Early and accurate diagnosis can help in implementing timely interventions to mitigate the effects of disease and ensure the health of your crops.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Additional Tips</h2>
+            <ul>
+                <li>Ensure that the uploaded image is clear and well-lit for the best results.</li>
+                <li>For the most accurate classification, try to provide images that are as close as possible to the conditions described in the system.</li>
+                <li>If you have multiple images, you can analyze each one individually to get a comprehensive view of your crop's health.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const response = await fetch('http://127.0.0.1:8000/product', {
+                method: 'POST',
+                body: formData
+            })
+    </script>
+</body>
+</html>

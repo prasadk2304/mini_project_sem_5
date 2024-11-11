@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Classification</title>
+<style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    backdrop-filter: blur(1px);
+    background-image: url('./top-view-fresh-vegetables-blue-background-free-space.jpg');
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 40px auto;
+    animation: pop 2s infinite alternate ease-in-out; /* Animation effect */
+}
+
+/* Keyframes for animation */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+        color: #edf4f7;
+    }
+    100% {
+        transform: scale(1.1);
+        color: #04f30c;
+    }
+}
+
+#dropArea {
+    border: #1c1b1b;
+    border-radius: 30px;
+    width: 95%;
+    max-width: 950px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    transition: background-color 0.3s, border-color 0.3s;
+    color: #f3eeee;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Strong shadow for depth */
+    padding: 20px;
+}
+
+#dropArea.dragover {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+#fileInput {
+    display: none;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Light shadow for buttons */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+}
+
+#fixedContainer {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 20px; /* Adds space between the buttons */
+    width: 100%;
+    max-width: 950px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+}
+
+#result {
+    margin-top: 20px; /* Adjust this value for desired spacing */
+    padding: 15px;
+    width: 100%;
+    max-width: 950px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    color: #f3eeee;
+    font-size: 1.2em;
+    display: none; /* Initially hidden */
+}
+
+#imagePreview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Image Upload and Classification</h1>
+
+    <div id="dropArea">
+        Drag and drop an image here or click to select a file.
+    </div>
+    <input type="file" id="fileInput" accept="image/*">
+
+    <div id="fixedContainer">
+        <button id="openCamera">Open Camera</button>
+        <button id="uploadBtn">Upload and Predict</button>
+    </div>
+
+    <div id="result">
+        <p>Prediction result: <strong id="predictionClass">N/A</strong></p>
+        <p>Confidence: <strong id="predictionConfidence">N/A</strong></p>
+        <div id="imagePreview"></div>
+    </div>
+
+    <script>
+        const dropArea = document.getElementById('dropArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const openCameraBtn = document.getElementById('openCamera');
+        const resultDiv = document.getElementById('result');
+        const predictionClass = document.getElementById('predictionClass');
+        const predictionConfidence = document.getElementById('predictionConfidence');
+        const imagePreview = document.getElementById('imagePreview');
+        let selectedFile;
+
+        // Prevent default behavior for drag/drop events
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Handle drag and drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.classList.add('dragover');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('dragover');
+        });
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropArea.classList.remove('dragover');
+            selectedFile = event.dataTransfer.files[0];
+            displayImagePreview(selectedFile);
+        });
+
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle file selection
+        fileInput.addEventListener('change', (event) => {
+            selectedFile = event.target.files[0];
+            displayImagePreview(selectedFile);
+        });
+
+        // Open camera functionality
+        openCameraBtn.addEventListener('click', async () => {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const videoElement = document.createElement('video');
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                dropArea.innerHTML = ''; // Clear previous content
+                dropArea.appendChild(videoElement);
+                videoElement.srcObject = stream;
+                videoElement.play();
+
+                // Capture image after 3 seconds
+                setTimeout(() => {
+                    canvas.width = 300; // Match dropArea width
+                    canvas.height = 300; // Match dropArea height
+                    context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                    const imageData = canvas.toDataURL('image/png');
+                    stream.getTracks().forEach(track => track.stop()); // Stop the camera
+                    displayImagePreview(imageData); // Display the captured image
+                }, 3000);
+            } else {
+                alert('Camera not supported by your browser.');
+            }
+        });
+
+        // Display image preview
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                imagePreview.innerHTML = ''; // Clear previous image
+                imagePreview.appendChild(img);
+            };
+
+            if (typeof file === 'string') {
+                // If the file is a data URL from the camera
+                const img = document.createElement('img');
+                img.src = file;
+                imagePreview.innerHTML = ''; // Clear previous image
+                imagePreview.appendChild(img);
+            } else if (file) {
+                // If the file is an actual file
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Handle file upload and prediction
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFile) {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/product', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // Display prediction results on the page
+                        predictionClass.textContent = result.class;
+                        predictionConfidence.textContent = result.confidence;
+                        resultDiv.style.display = 'block';
+                    } else {
+                        alert('Error: ' + result.message);
+                    }
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            } else {
+                alert('Please select or capture an image first.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

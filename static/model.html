@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: url('potatoll.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(146, 132, 132, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        h2 {
+            color: #2e8b57;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        li {
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 100%;
+}
+
+li {
+    float: left;
+    font-weight: bold;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #000000;
+}
+
+.active {
+    background-color: none;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="disease_info.html">Disease Awareness</a></li>
+            <li><a href="use.html">How to Use</a></li>
+            <li><a href="model.html">About System</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h1>Potato Disease Classification Model</h1>
+        <br>
+        
+        <div class="section">
+            <h2>What Is This?</h2>
+            <p>This web page presents a comprehensive overview of a potato disease classification system developed to identify and differentiate between early blight, late blight, and healthy potato leaves. The system utilizes advanced machine learning techniques to analyze and classify potato leaf images, helping farmers and agricultural professionals to detect and manage diseases effectively. By leveraging a Convolutional Neural Network (CNN) model trained on a diverse dataset, the system achieves high accuracy in distinguishing between various leaf conditions, thus supporting better crop management practices and reducing potential yield losses.</p>
+            <p>The web application is designed to provide users with detailed information about each disease, including symptoms, preventive measures, and seasonal variations. It serves as a valuable tool for enhancing awareness and knowledge about potato diseases, promoting timely interventions, and ultimately contributing to the overall health and productivity of potato crops.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Why Is It Necessary?</h2>
+            <p>Understanding potato diseases such as early blight and late blight is crucial for several reasons. Early detection and accurate diagnosis enable farmers to implement timely interventions, which can significantly reduce crop yield losses and maintain the quality of the produce. Early blight, if not managed promptly, can cause substantial defoliation and decrease the plant’s photosynthetic capacity. Late blight, on the other hand, can spread rapidly and devastate entire fields within a few days, leading to severe economic losses.</p>
+            <p>Moreover, managing these diseases effectively helps mitigate economic impacts on farmers and the agricultural industry. Potatoes are a staple crop in many regions, and significant outbreaks can have far-reaching consequences for food security and local economies. Early identification and targeted treatments also contribute to more sustainable agricultural practices by minimizing the use of chemicals and preserving soil health. Overall, understanding and managing potato diseases is essential for ensuring the productivity, profitability, and sustainability of potato farming.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Made Using</h2>
+            <p>The potato disease classification system is powered by a Convolutional Neural Network (CNN) model built with TensorFlow. The model achieves an impressive accuracy of 99.45% with a loss of 0.0208, demonstrating its effectiveness in classifying potato leaf images. The model was trained using a dataset of potato leaf images, with data augmentation techniques such as rescaling, resizing, random horizontal and vertical flipping, and random rotation applied to enhance the model’s robustness and generalization.</p>
+            <p>Data augmentation helps to artificially expand the dataset by generating variations of the images, which improves the model's ability to handle diverse real-world conditions. The Adam optimizer was used to fine-tune the model parameters, ensuring efficient training and convergence. The combination of these advanced techniques results in a high-performing model capable of accurately identifying and classifying different potato leaf conditions, thus providing a reliable tool for disease detection and management.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Dataset</h2>
+            <p>The classification system utilizes the Plant Village dataset from Kaggle, which comprises a total of 2,152 images categorized into three classes: early blight, late blight, and healthy potato leaves. This dataset provides a diverse range of images that represent various stages and conditions of the diseases, allowing the model to learn and generalize effectively across different scenarios.</p>
+            <p>The dataset is crucial for training the CNN model, as it offers a comprehensive set of examples needed to accurately distinguish between the different types of leaf conditions. By using a well-curated dataset with a balanced representation of each class, the model can achieve high accuracy and reliability in real-world applications. The dataset's quality and diversity play a significant role in the overall performance of the classification system, making it an essential component of the project.</p>
+        </div>
+    </div>
+
+    <script>
+        const response = await fetch('http://127.0.0.1:8000/product', {
+                method: 'POST',
+                body: formData
+            })
+    </script>
+</body>
+</html>

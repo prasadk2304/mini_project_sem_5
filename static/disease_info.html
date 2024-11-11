@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: url('potatoll.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(146, 132, 132, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        h2 {
+            color: #2e8b57;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        li {
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 100%;
+}
+
+li {
+    float: left;
+    font-weight: bold;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #000000;
+}
+
+.active {
+    background-color: none;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="disease_info.html">Disease Awareness</a></li>
+            <li><a href="use.html">How to Use</a></li>
+            <li><a href="model.html">About System</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h1>Potato Disease Information</h1><br>
+        
+        <div class="section">
+            <h2>Why It's Necessary to Know About Potato Diseases</h2>
+            <p><strong>Crop Yield and Quality:</strong> Early detection allows farmers to take prompt action to prevent the spread of these diseases, which can otherwise significantly reduce crop yield and quality. Late blight, for instance, can destroy an entire field of potatoes within a few days under favorable conditions.</p>
+            <p><strong>Economic Impact:</strong> Potatoes are a staple crop in many countries, and a severe outbreak of either early or late blight can lead to substantial economic losses for farmers and the agricultural industry.</p>
+            <p><strong>Pest and Disease Management:</strong> Early identification enables more effective pest and disease management strategies. This might include targeted application of fungicides, which reduces the overall amount of chemicals used and minimizes the impact on the environment.</p>
+            <p><strong>Sustainability:</strong> By managing diseases early, farmers can practice more sustainable agriculture, preserving the health of the soil and surrounding ecosystems.</p>
+            <p><strong>Food Security:</strong> Potatoes are a key food source globally, and ensuring healthy potato crops is essential for maintaining food security, especially in regions heavily dependent on them.</p>
+            <br>
+        </div>
+
+        <div class="section">
+            <h2>Early Blight (Alternaria solani)</h2>
+            <p>Early blight is caused by the fungus <i>Alternaria solani</i> and primarily affects the older leaves of potato plants. Symptoms include the appearance of circular, dark spots with concentric rings on the leaves, often surrounded by a yellow halo. These lesions can also appear on stems and tubers, potentially leading to significant defoliation. The disease thrives in warm, wet conditions, and can severely impact crop yield and quality by reducing the plant's ability to photosynthesize effectively. If left untreated, early blight can lead to substantial economic losses for farmers.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Late Blight (Phytophthora infestans)</h2>
+            <p>Late blight is caused by the oomycete <i>Phytophthora infestans</i> and is notorious for its rapid and destructive spread. The disease manifests as irregular, water-soaked lesions on the leaves, stems, and tubers of potato plants. These lesions often have a grayish-brown appearance and may be accompanied by a white, fuzzy mold on the underside of the leaves. Late blight thrives in cool, wet conditions and can devastate entire fields within days. Early detection and management are critical to prevent widespread crop loss and ensure food security.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Preventive Measures and Treatments</h2>
+            
+            <h3>Early Blight</h3>
+            <p>To prevent early blight, implement crop rotation to reduce the buildup of fungal spores in the soil. Use resistant potato varieties if available and ensure proper spacing between plants to improve air circulation and reduce humidity around the foliage. Regularly inspect plants for symptoms and apply fungicides as a preventive measure or at the first sign of disease. Additionally, removing and destroying infected plant debris can help reduce the spread of the disease.</p>
+            
+            <h3>Late Blight</h3>
+            <p>Control late blight through integrated management strategies. Start by using resistant potato varieties and applying fungicides proactively during periods of high humidity and cooler temperatures. Ensure proper plant spacing and remove any infected plants promptly to reduce the potential for disease spread. Additionally, avoid overhead irrigation, which can create favorable conditions for the pathogen. In severe cases, removing and destroying affected plants and tubers can help mitigate the impact.</p>
+            <br>
+        </div>
+        
+        <div class="section">
+            <h2>Seasonal and Regional Information</h2>
+            
+            <h3>Early Blight</h3>
+            <p>Early blight is more common in warm, humid climates and tends to occur during the growing season when temperatures range from 24-29°C (75-85°F). It can be a concern from mid-summer to late summer, particularly during periods of high rainfall. Regional factors such as local climate and soil conditions can influence the severity and timing of outbreaks.</p>
+            
+            <h3>Late Blight</h3>
+            <p>Late blight is most prevalent in cool, wet conditions and can occur throughout the growing season but is particularly problematic during cool, moist periods. In regions with high humidity and temperatures between 10-20°C (50-68°F), the disease can spread rapidly. The risk is higher in areas with frequent rainfall or heavy dews. Seasonal variations and local weather patterns play a significant role in the occurrence and intensity of late blight outbreaks.</p>
+            <br>
+        </div>
+    </div>
+
+    <script>
+        const response = await fetch('http://127.0.0.1:8000/product', {
+                method: 'POST',
+                body: formData
+            })
+    </script>
+</body>
+</html>
